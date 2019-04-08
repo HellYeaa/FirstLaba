@@ -1,31 +1,34 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication2", "ConsoleApplication2\ConsoleApplication2.vcxproj", "{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Debug|x64.ActiveCfg = Debug|x64
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Debug|x64.Build.0 = Debug|x64
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Debug|x86.ActiveCfg = Debug|Win32
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Debug|x86.Build.0 = Debug|Win32
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Release|x64.ActiveCfg = Release|x64
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Release|x64.Build.0 = Release|x64
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Release|x86.ActiveCfg = Release|Win32
-		{38F47DF9-0CFF-4A12-B63B-62C1C4705EF3}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A0E3F0A2-58DD-4A48-8A66-EF4F0748BAAB}
-	EndGlobalSection
-EndGlobal
+
+#include "pch.h"
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double rad(double &xr, double x, double ep ,  double &k) 
+{
+	xr = -3 / x;
+	double mysum = 0;
+	k = 0;
+	double koef = -((1 / ((2 * k + 3)*(2 * k + 2)))*pow((x / 3), 4));
+	while (abs(xr) >= ep) {
+		mysum += xr;
+		
+		xr *= koef;
+		k++;
+		cout << "mysum: " << mysum << " current element: " << xr << " k: " << k << endl;
+		} 
+	k --;
+	xr /= koef;
+	return mysum;
+}
+
+int main()
+{
+	double xr, x, ep, mysum, k;
+	cin >> x >> ep;
+	cout << "mysum: " << rad(xr, x, ep, k);
+	cout<<" last element: " << xr << " k: " << k;
+	system("pause");
+}
+
